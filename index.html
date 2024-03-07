@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <title>AR.js with A-Frame - Elevated Property Display</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://ar-js-org.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+    <a-scene vr-mode-ui="enabled: false" arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
+
+        <!-- Uckuyular Üçkuyular 38.405675209865336, 27.06935935250486 -->
+        <a-image id="Uckuyular" src="https://global.discourse-cdn.com/business7/uploads/glideapps/original/3X/7/8/7800cb86dc1e711593425e83e3d125ee1eb8bd5c.jpeg" look-at="[gps-camera]" scale="5 5 5"
+            gps-entity-place="latitude: 38.405675209865336; 27.06935935250486;" position="0 2 0"></a-image>
+        <a-text value="Üçkuyular" look-at="[gps-camera]" color="white" scale="5 5 5"
+            gps-entity-place="latitude: 38.405675209865336; 27.06935935250486;" position="0 5 0"></a-text>
+        <a-text id="Uckuyular-distance" look-at="[gps-camera]" color="white" scale="5 5 5"
+            gps-entity-place="latitude: 38.405675209865336; 27.06935935250486;" position="0 6 0"></a-text>
+
+        <!-- 	  Goztepe Göztepe  	   38.399571991405416, 27.083436202065336 -->
+        <a-image id="Goztepe" src="https://global.discourse-cdn.com/business7/uploads/glideapps/original/3X/7/8/7800cb86dc1e711593425e83e3d125ee1eb8bd5c.jpeg" look-at="[gps-camera]" scale="5 5 5"
+            gps-entity-place="latitude: 38.399571991405416,; longitude: 27.083436202065336;" position="0 2 0"></a-image>
+        <a-text value="Göztepe" look-at="[gps-camera]" color="white" scale="5 5 5"
+            gps-entity-place="latitude: 38.399571991405416,; longitude: 27.083436202065336;" position="0 5 0"></a-text>
+        <a-text id="Goztepe-distance" look-at="[gps-camera]" color="white" scale="5 5 5"
+            gps-entity-place="latitude: 38.399571991405416,; longitude: 27.083436202065336;" position="0 6 0"></a-text>
+
+        <!-- 	   Konak	   38.418826366849444, 27.125208834874005 -->
+        <a-image id="Konak" src="https://global.discourse-cdn.com/business7/uploads/glideapps/original/3X/7/8/7800cb86dc1e711593425e83e3d125ee1eb8bd5c.jpeg look-at="[gps-camera]" scale="1 1 1"
+            gps-entity-place="latitude: 38.418826366849444; longitude: 27.125208834874005;" position="0 2 0"></a-image>
+        <a-text value="Konak" look-at="[gps-camera]" color="white" scale="5 5 5"
+            gps-entity-place="latitude: 38.418826366849444; longitude: 27.125208834874005;" position="0 5 0"></a-text>
+        <a-text id="Konak-distance" look-at="[gps-camera]" color="white" scale="5 5 5"
+            gps-entity-place="latitude: 38.418826366849444; longitude: 27.125208834874005;" position="0 6 0"></a-text>
+
+        <!-- 	   Pasaport	   38.42892199253736, 27.13228407441726 -->
+        <a-image id="Pasaport" src="https://global.discourse-cdn.com/business7/uploads/glideapps/original/3X/7/8/7800cb86dc1e711593425e83e3d125ee1eb8bd5c.jpeg" look-at="[gps-camera]" scale="5 5 5"
+            gps-entity-place="latitude: 38.42892199253736; longitude: 27.13228407441726;" position="0 2 0"></a-image>
+        <a-text value="Pasaport" look-at="[gps-camera]" color="white" scale="5 5 5"
+            gps-entity-place="latitude: 38.42892199253736; longitude: 27.13228407441726;" position="0 5 0"></a-text>
+        <a-text id="Pasaport-distance" look-at="[gps-camera]" color="white" scale="5 5 5"
+            gps-entity-place="latitude: 38.42892199253736; longitude: 27.13228407441726;" position="0 6 0"></a-text>
+
+        <!-- 	   Alsancak 	   38.43897576759363, 27.140762959439844 -->
+        <a-image id="Alsancak" src="https://global.discourse-cdn.com/business7/uploads/glideapps/original/3X/7/8/7800cb86dc1e711593425e83e3d125ee1eb8bd5c.jpeg" look-at="[gps-camera]" scale="5 5 5"
+            gps-entity-place="latitude: 38.43897576759363; longitude: 27.140762959439844;" position="0 2 0"></a-image>
+        <a-text value="Alsancak" look-at="[gps-camera]" color="white" scale="5 5 5"
+            gps-entity-place="latitude: 38.43897576759363; longitude: 27.140762959439844;" position="0 5 0"></a-text>
+        <a-text id="Alsancak-distance" look-at="[gps-camera]" color="white" scale="5 5 5"
+            gps-entity-place="latitude: 38.43897576759363; longitude: 27.140762959439844;" position="0 6 0"></a-text>
+
+        <!-- 	Bostanli   Bostanlı 	   38.45202997017321, 27.09778594157115 -->
+        <a-image id="Bostanli" src="https://global.discourse-cdn.com/business7/uploads/glideapps/original/3X/7/8/7800cb86dc1e711593425e83e3d125ee1eb8bd5c.jpeg" look-at="[gps-camera]" scale="5 5 5"
+            gps-entity-place="latitude: 38.45202997017321; longitude: 27.09778594157115;" position="0 2 0"></a-image>
+        <a-text value="Bostanlı" look-at="[gps-camera]" color="white" scale="5 5 5"
+            gps-entity-place="latitude: 38.45202997017321; longitude: 27.09778594157115;" position="0 5 0"></a-text>
+        <a-text id="Bostanli-distance" look-at="[gps-camera]" color="white" scale="5 5 5"
+            gps-entity-place="latitude: 38.45202997017321; longitude: 27.09778594157115;" position="0 6 0"></a-text>
+
+        <!-- 	 Karsiyaka  Karşıyaka 	   38.454830076318316, 27.12052045655903 -->
+        <a-image id="Karsiyaka" src="https://global.discourse-cdn.com/business7/uploads/glideapps/original/3X/7/8/7800cb86dc1e711593425e83e3d125ee1eb8bd5c.jpeg" look-at="[gps-camera]" scale="5 5 5"
+            gps-entity-place="latitude: 38.454830076318316; longitude: 27.12052045655903;" position="0 2 0"></a-image>
+        <a-text value="Karşıyaka" look-at="[gps-camera]" color="white" scale="5 5 5"
+            gps-entity-place="latitude: 38.454830076318316; longitude: 27.12052045655903;" position="0 5 0"></a-text>
+        <a-text id="Karsiyaka-distance" look-at="[gps-camera]" color="white" scale="5 5 5"
+            gps-entity-place="latitude: 38.454830076318316; longitude: 27.12052045655903;" position="0 6 0"></a-text>
+
+        <a-camera gps-camera rotation-reader></a-camera>
+    </a-scene>
+    <script>
+        window.addEventListener('load', function () {
+            var cameraEl = document.querySelector('a-camera');
+            var initialScale = 1;
+            var initialDistance = null;
+
+            function getDistance(touches) {
+                var dx = touches[0].pageX - touches[1].pageX;
+                var dy = touches[0].pageY - touches[1].pageY;
+                return Math.sqrt(dx * dx + dy * dy);
+            }
+
+            function onPinchStart(event) {
+                if (event.touches.length === 2) {
+                    initialDistance = getDistance(event.touches);
+                    document.addEventListener('touchmove', onPinchMove);
+                    document.addEventListener('touchend', onPinchEnd);
+                }
+            }
+
+            function onPinchMove(event) {
+                if (event.touches.length === 2) {
+                    var distance = getDistance(event.touches);
+                    var scale = initialScale * (distance / initialDistance);
+
+                    // Adjust FOV based on scale; you might need to clamp or map these values
+                    var newFOV = 80 / scale; // Example calculation, adjust as needed
+                    cameraEl.setAttribute('fov', newFOV);
+                }
+            }
+
+            function onPinchEnd(event) {
+                if (event.touches.length < 2) {
+                    document.removeEventListener('touchmove', onPinchMove);
+                    document.removeEventListener('touchend', onPinchEnd);
+                    // Reset initial distance for the next pinch
+                    initialDistance = null;
+                }
+            }
+
+            document.addEventListener('touchstart', onPinchStart);
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Function to calculate distance between two coordinates using the Haversine formula
+            function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+                var R = 6371; // Radius of the earth in km
+                var dLat = deg2rad(lat2 - lat1);
+                var dLon = deg2rad(lon2 - lon1);
+                var a =
+                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+                    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                var d = R * c; // Distance in km
+                return d * 1000; // Convert to meters
+            }
+
+            function deg2rad(deg) {
+                return deg * (Math.PI / 180);
+            }
+
+            // Function to update distances
+            function updateDistances() {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    // Update distance for each marker
+                    var userLat = position.coords.latitude;
+                    var userLon = position.coords.longitude;
+
+                    document.querySelectorAll('[gps-entity-place]').forEach(function (entity) {
+                        var placeLat = entity.getAttribute('gps-entity-place').latitude;
+                        var placeLon = entity.getAttribute('gps-entity-place').longitude;
+                        var distance = getDistanceFromLatLonInKm(userLat, userLon, placeLat, placeLon).toFixed(2);
+
+                        // Find the corresponding distance text entity by ID
+                        var entityId = entity.getAttribute('id') + "-distance";
+                        var distanceEntity = document.getElementById(entityId);
+                        if (distanceEntity) {
+                            distanceEntity.setAttribute('value', `Distance: ${distance}m`);
+                        }
+                    });
+                }, function (err) {
+                    console.warn('ERROR(' + err.code + '): ' + err.message);
+                }, {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
+                });
+            }
+
+            // Update distances every second
+            setInterval(updateDistances, 1000);
+        });
+    </script>
+</body>
+
+</html>
