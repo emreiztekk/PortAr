@@ -154,7 +154,6 @@
             // Function to update distances
             function updateDistances() {
                 navigator.geolocation.getCurrentPosition(function (position) {
-                    // Update distance for each marker
                     var userLat = position.coords.latitude;
                     var userLon = position.coords.longitude;
 
@@ -170,11 +169,13 @@
                             distanceEntity.setAttribute('value', `Mesafe: ${distance}m`);
                         }
 
-                        // Dynamically adjust scale based on distance
-                        // This is a simple linear scaling; adjust as needed
-                        var baseScale = 5; // Base scale for images
-                        var scaleFactor = distance / 100; // Example scaling factor, adjust this logic as needed
-                        var newScale = Math.max(1, baseScale + scaleFactor); // Ensure scale doesn't go below 1
+                        // Aggressively adjust scale based on distance
+                        var baseScale = 5; // Starting scale for images
+                        var scaleFactor = distance / 50; // Increase this to make the scale grow faster with distance
+                        var newScale = baseScale + scaleFactor; // Calculate new scale
+                        newScale = Math.max(baseScale, newScale); // Ensure scale is at least the base scale
+
+                        // Set the new scale
                         entity.setAttribute('scale', `${newScale} ${newScale} ${newScale}`);
                     });
                 }, function (err) {
