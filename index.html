@@ -81,7 +81,7 @@
             src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Kar%C5%9F%C4%B1yaka_terminal.jpg"
             look-at="[gps-camera]" scale="5 5 5"
             gps-entity-place="latitude: 38.454830076318316; longitude: 27.12052045655903;" position="0 2 0"></a-image>
-        <a-text value="Karşıyaka" look-at="[gps-camera]" color="white" scale="5 5 5"
+        <a-text value="Karsıyaka" look-at="[gps-camera]" color="white" scale="5 5 5"
             gps-entity-place="latitude: 38.454830076318316; longitude: 27.12052045655903;" position="0 5 0"></a-text>
         <a-text id="Karsiyaka-distance" look-at="[gps-camera]" color="white" scale="5 5 5"
             gps-entity-place="latitude: 38.454830076318316; longitude: 27.12052045655903;" position="0 6 0"></a-text>
@@ -112,9 +112,8 @@
                 if (event.touches.length === 2) {
                     var distance = getDistance(event.touches);
                     var scale = initialScale * (distance / initialDistance);
-
-                    // Adjust FOV based on scale; you might need to clamp or map these values
-                    var newFOV = 80 / scale; // Example calculation, adjust as needed
+ 
+                    var newFOV = 80 / scale;  
                     cameraEl.setAttribute('fov', newFOV);
                 }
             }
@@ -123,7 +122,7 @@
                 if (event.touches.length < 2) {
                     document.removeEventListener('touchmove', onPinchMove);
                     document.removeEventListener('touchend', onPinchEnd);
-                    // Reset initial distance for the next pinch
+ 
                     initialDistance = null;
                 }
             }
@@ -132,10 +131,9 @@
         });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Function to calculate distance between two coordinates using the Haversine formula
+        document.addEventListener('DOMContentLoaded', function () { 
             function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-                var R = 6371; // Radius of the earth in km
+                var R = 6371; 
                 var dLat = deg2rad(lat2 - lat1);
                 var dLon = deg2rad(lon2 - lon1);
                 var a =
@@ -143,15 +141,14 @@
                     Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
                     Math.sin(dLon / 2) * Math.sin(dLon / 2);
                 var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-                var d = R * c; // Distance in km
-                return d * 1000; // Convert to meters
+                var d = R * c; 
+                return d * 1000;  
             }
 
             function deg2rad(deg) {
                 return deg * (Math.PI / 180);
             }
-
-            // Function to update distances
+ 
             function updateDistances() {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var userLat = position.coords.latitude;
@@ -161,21 +158,18 @@
                         var placeLat = entity.getAttribute('gps-entity-place').latitude;
                         var placeLon = entity.getAttribute('gps-entity-place').longitude;
                         var distance = getDistanceFromLatLonInKm(userLat, userLon, placeLat, placeLon).toFixed(2);
-
-                        // Update distance display
+ 
                         var entityId = entity.getAttribute('id') + "-distance";
                         var distanceEntity = document.getElementById(entityId);
                         if (distanceEntity) {
                             distanceEntity.setAttribute('value', `Mesafe: ${distance}m`);
                         }
-
-                        // Aggressively adjust scale based on distance
-                        var baseScale = 5; // Starting scale for images
-                        var scaleFactor = distance / 50; // Increase this to make the scale grow faster with distance
-                        var newScale = baseScale + scaleFactor; // Calculate new scale
-                        newScale = Math.max(baseScale, newScale); // Ensure scale is at least the base scale
-
-                        // Set the new scale
+ 
+                        var baseScale = 5;  
+                        var scaleFactor = distance / 50;  
+                        var newScale = baseScale + scaleFactor;  
+                        newScale = Math.max(baseScale, newScale);  
+ 
                         entity.setAttribute('scale', `${newScale} ${newScale} ${newScale}`);
                     });
                 }, function (err) {
@@ -186,8 +180,7 @@
                     maximumAge: 0
                 });
             }
-
-            // Update distances every second
+ 
             setInterval(updateDistances, 1000);
         });
     </script>
