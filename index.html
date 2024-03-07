@@ -12,8 +12,7 @@
     <a-scene vr-mode-ui="enabled: false" arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
 
         <!-- Uckuyular Üçkuyular 38.405675209865336, 27.06935935250486 -->
-        <a-image id="Uckuyular"
-            src="https://upload.wikimedia.org/wikipedia/commons/3/3f/G%C3%B6ztepe_pier.jpg"
+        <a-image id="Uckuyular" src="https://upload.wikimedia.org/wikipedia/commons/3/3f/G%C3%B6ztepe_pier.jpg"
             look-at="[gps-camera]" scale="5 5 5" gps-entity-place="latitude: 38.405675209865336; 27.06935935250486;"
             position="0 2 0"></a-image>
         <a-text value="Üçkuyular" look-at="[gps-camera]" color="white" scale="5 5 5"
@@ -22,8 +21,7 @@
             gps-entity-place="latitude: 38.405675209865336; 27.06935935250486;" position="0 6 0"></a-text>
 
         <!-- 	  Goztepe Göztepe  	   38.399571991405416, 27.083436202065336 -->
-        <a-image id="Goztepe"
-            src="https://upload.wikimedia.org/wikipedia/commons/3/3f/G%C3%B6ztepe_pier.jpg"
+        <a-image id="Goztepe" src="https://upload.wikimedia.org/wikipedia/commons/3/3f/G%C3%B6ztepe_pier.jpg"
             look-at="[gps-camera]" scale="5 5 5"
             gps-entity-place="latitude: 38.399571991405416,; longitude: 27.083436202065336;" position="0 2 0"></a-image>
         <a-text value="Göztepe" look-at="[gps-camera]" color="white" scale="5 5 5"
@@ -42,18 +40,16 @@
             gps-entity-place="latitude: 38.40826637555396; longitude: 27.106606027145318;" position="0 6 0"></a-text>
 
         <!-- 	   Konak	   38.418826366849444, 27.125208834874005 -->
-        <a-image id="Konak"
-            src="https://upload.wikimedia.org/wikipedia/commons/4/46/Konak_Terminal.jpg" 
-            look-at="[gps-camera]" scale="1 1 1" gps-entity-place="latitude: 38.418826366849444; longitude: 27.125208834874005;"
-            position="0 2 0"></a-image>
+        <a-image id="Konak" src="https://upload.wikimedia.org/wikipedia/commons/4/46/Konak_Terminal.jpg"
+            look-at="[gps-camera]" scale="1 1 1"
+            gps-entity-place="latitude: 38.418826366849444; longitude: 27.125208834874005;" position="0 2 0"></a-image>
         <a-text value="Konak" look-at="[gps-camera]" color="white" scale="5 5 5"
             gps-entity-place="latitude: 38.418826366849444; longitude: 27.125208834874005;" position="0 5 0"></a-text>
         <a-text id="Konak-distance" look-at="[gps-camera]" color="white" scale="5 5 5"
             gps-entity-place="latitude: 38.418826366849444; longitude: 27.125208834874005;" position="0 6 0"></a-text>
 
         <!-- 	   Pasaport	   38.42892199253736, 27.13228407441726 -->
-        <a-image id="Pasaport"
-            src="https://upload.wikimedia.org/wikipedia/commons/5/55/Kantar_Karakolu%2C_Izmir.jpg"
+        <a-image id="Pasaport" src="https://upload.wikimedia.org/wikipedia/commons/5/55/Kantar_Karakolu%2C_Izmir.jpg"
             look-at="[gps-camera]" scale="5 5 5"
             gps-entity-place="latitude: 38.42892199253736; longitude: 27.13228407441726;" position="0 2 0"></a-image>
         <a-text value="Pasaport" look-at="[gps-camera]" color="white" scale="5 5 5"
@@ -62,8 +58,7 @@
             gps-entity-place="latitude: 38.42892199253736; longitude: 27.13228407441726;" position="0 6 0"></a-text>
 
         <!-- 	   Alsancak 	   38.43897576759363, 27.140762959439844 -->
-        <a-image id="Alsancak"
-            src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Alsancak_Pier.jpg"
+        <a-image id="Alsancak" src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Alsancak_Pier.jpg"
             look-at="[gps-camera]" scale="5 5 5"
             gps-entity-place="latitude: 38.43897576759363; longitude: 27.140762959439844;" position="0 2 0"></a-image>
         <a-text value="Alsancak" look-at="[gps-camera]" color="white" scale="5 5 5"
@@ -168,12 +163,19 @@
                         var placeLon = entity.getAttribute('gps-entity-place').longitude;
                         var distance = getDistanceFromLatLonInKm(userLat, userLon, placeLat, placeLon).toFixed(2);
 
-                        // Find the corresponding distance text entity by ID
+                        // Update distance display
                         var entityId = entity.getAttribute('id') + "-distance";
                         var distanceEntity = document.getElementById(entityId);
                         if (distanceEntity) {
                             distanceEntity.setAttribute('value', `Mesafe: ${distance}m`);
                         }
+
+                        // Dynamically adjust scale based on distance
+                        // This is a simple linear scaling; adjust as needed
+                        var baseScale = 5; // Base scale for images
+                        var scaleFactor = distance / 100; // Example scaling factor, adjust this logic as needed
+                        var newScale = Math.max(1, baseScale + scaleFactor); // Ensure scale doesn't go below 1
+                        entity.setAttribute('scale', `${newScale} ${newScale} ${newScale}`);
                     });
                 }, function (err) {
                     console.warn('ERROR(' + err.code + '): ' + err.message);
