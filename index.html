@@ -12,7 +12,8 @@
     <a-scene vr-mode-ui="enabled: false" arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
 
         <a-entity gps-entity-place="latitude: 38.405675209865336; longitude: 27.06935935250486;" scale="5 5 5">
-            <a-image src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg"
+            <a-image
+                src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg"
                 look-at="[gps-camera]" position="0 2 0"></a-image>
             <a-text value="Uckuyular" look-at="[gps-camera]" color="white" position="0 -1 1"></a-text>
             <a-text id="Uckuyular-distance" look-at="[gps-camera]" color="white" position="0 -2 1"></a-text>
@@ -36,8 +37,8 @@
 
         <a-entity gps-entity-place="latitude:38.418826366849444; longitude: 27.125208834874005;" scale="5 5 5">
 
-            <a-image src="https://upload.wikimedia.org/wikipedia/commons/4/46/Konak_Terminal.jpg"
-                look-at="[gps-camera]" position="0 2 0"></a-image>
+            <a-image src="https://upload.wikimedia.org/wikipedia/commons/4/46/Konak_Terminal.jpg" look-at="[gps-camera]"
+                position="0 2 0"></a-image>
             <a-text value="Karantina" look-at="[gps-camera]" color="white" position="0 -1 1"></a-text>
             <a-text id="Karantina-distance" look-at="[gps-camera]" color="white" position="0 -2 1"></a-text>
         </a-entity>
@@ -56,19 +57,20 @@
                 position="0 2 0"></a-image>
             <a-text value="Alsancak" look-at="[gps-camera]" color="white" position="0 -1 1"></a-text>
             <a-text id="Alsancak-distance" look-at="[gps-camera]" color="white" position="0 -2 1"></a-text>
-        </a-entity> 
+        </a-entity>
 
         <a-entity gps-entity-place="latitude:38.45202997017321; longitude: 27.09778594157115;" scale="5 5 5">
 
-            <a-image src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Bostanl%C4%B1_Ferry_Terminal%2C_July_2020_%289%29.jpg" look-at="[gps-camera]"
-                position="0 2 0"></a-image>
+            <a-image
+                src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Bostanl%C4%B1_Ferry_Terminal%2C_July_2020_%289%29.jpg"
+                look-at="[gps-camera]" position="0 2 0"></a-image>
             <a-text value="Bostanli" look-at="[gps-camera]" color="white" position="0 -1 0"></a-text>
             <a-text id="Bostanli-distance" look-at="[gps-camera]" color="white" position="0 -2 0"></a-text>
-        </a-entity> 
+        </a-entity>
         <a-entity gps-entity-place="latitude:38.454830076318316; longitude: 27.12052045655903;" scale="5 5 5">
 
-            <a-image src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Kar%C5%9F%C4%B1yaka_terminal.jpg" look-at="[gps-camera]"
-                position="0 2 0"></a-image>
+            <a-image src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Kar%C5%9F%C4%B1yaka_terminal.jpg"
+                look-at="[gps-camera]" position="0 2 0"></a-image>
             <a-text value="Karsiyaka" look-at="[gps-camera]" color="white" position="0 -1 1"></a-text>
             <a-text id="Karsiyaka-distance" look-at="[gps-camera]" color="white" position="0 -2 1"></a-text>
         </a-entity>
@@ -116,60 +118,51 @@
             document.addEventListener('touchstart', onPinchStart);
         });
     </script>
-   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-            var R = 6371; // Radius of the earth in km
-            var dLat = deg2rad(lat2 - lat1);  // deg2rad below
-            var dLon = deg2rad(lon2 - lon1); 
-            var a = 
-                Math.sin(dLat/2) * Math.sin(dLat/2) +
-                Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-                Math.sin(dLon/2) * Math.sin(dLon/2); 
-            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-            var d = R * c; // Distance in km
-            return d * 1000; // Distance in meters
-        }
-    
-        function deg2rad(deg) {
-            return deg * (Math.PI/180);
-        }
-    
-        function updateDistances() {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var userLat = position.coords.latitude;
-                var userLon = position.coords.longitude;
-    
-                document.querySelectorAll('[gps-entity-place]').forEach(function (entity) {
-                    var placeLat = entity.getAttribute('gps-entity-place').latitude;
-                    var placeLon = entity.getAttribute('gps-entity-place').longitude;
-                    var distance = getDistanceFromLatLonInKm(userLat, userLon, placeLat, placeLon).toFixed(2);
-    
-                    // Find the distance text element directly without relying on a dynamically generated ID
-                    var distanceElement = entity.querySelector('[id$="-distance"]');
-                    if (distanceElement) {
-                        distanceElement.setAttribute('value', `Distance: ${distance} m`);
-                    }
-    
-                    // Adjust scale based on distance if needed
-                    // This part of your code seems to intend to scale entities based on distance,
-                    // but you might need to adjust the logic to get the visual effect you want.
-                    var baseScale = 1; // Start with a base scale of 1
-                    var scaleFactor = Math.max(distance / 1000, 1); // Example scaling logic
-                    var newScale = baseScale * scaleFactor;
-                    entity.setAttribute('scale', `${newScale} ${newScale} ${newScale}`);
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+                var R = 6371; // Earth radius in Kilometers
+                var dLat = deg2rad(lat2 - lat1);
+                var dLon = deg2rad(lon2 - lon1);
+                var a =
+                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+                    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                return R * c * 1000; // Distance in meters
+            }
+
+            function deg2rad(deg) {
+                return deg * (Math.PI / 180);
+            }
+
+            function updateDistances() {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var userLat = position.coords.latitude;
+                    var userLon = position.coords.longitude;
+
+                    document.querySelectorAll('[gps-entity-place]').forEach(function (entity) {
+                        var placeLat = parseFloat(entity.getAttribute('gps-entity-place').latitude);
+                        var placeLon = parseFloat(entity.getAttribute('gps-entity-place').longitude);
+                        var distance = getDistanceFromLatLonInKm(userLat, userLon, placeLat, placeLon).toFixed(2);
+
+                        // Assuming the distance a-text is always the third child of a-entity
+                        var distanceElement = entity.children[2]; // Adjust the index if your structure changes
+                        if (distanceElement) {
+                            distanceElement.setAttribute('value', `Distance: ${distance} m`);
+                        }
+                    });
+                }, function (err) {
+                    console.warn('ERROR(' + err.code + '): ' + err.message);
+                }, {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
                 });
-            }, function (err) {
-                console.warn('ERROR(' + err.code + '): ' + err.message);
-            }, {
-                enableHighAccuracy: true,
-                timeout: 5000,
-                maximumAge: 0
-            });
-        }
-    
-        setInterval(updateDistances, 1000);
-    });
+            }
+
+            setInterval(updateDistances, 1000);
+        });
     </script>
 </body>
 
