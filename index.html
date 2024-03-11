@@ -198,60 +198,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-                var R = 6371; // Radius of the earth in km
-                var dLat = deg2rad(lat2 - lat1);  // deg2rad below
-                var dLon = deg2rad(lon2 - lon1); 
-                var a = 
-                    Math.sin(dLat/2) * Math.sin(dLat/2) +
-                    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-                    Math.sin(dLon/2) * Math.sin(dLon/2)
-                    ; 
-                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-                var d = R * c; // Distance in km
-                return d * 1000; // Distance in meters
-            }
-        
-            function deg2rad(deg) {
-                return deg * (Math.PI/180);
-            }
-        
-            function updateDistances() {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var userLat = position.coords.latitude;
-                    var userLon = position.coords.longitude;
-        
-                    document.querySelectorAll('[gps-entity-place]').forEach(function(entity) {
-                        var placeLat = entity.getAttribute('gps-entity-place').latitude;
-                        var placeLon = entity.getAttribute('gps-entity-place').longitude;
-                        var distance = getDistanceFromLatLonInKm(userLat, userLon, placeLat, placeLon).toFixed(2);
-        
-                        var entityId = entity.id + "-distance"; // Assuming each entity has a unique ID
-                        var distanceEntity = document.getElementById(entityId);
-                        if (distanceEntity) {
-                            distanceEntity.setAttribute('value', `Distance: ${distance} m`);
-                        }
-         
-                        var baseScale = 1; // This is your base scale. Adjust as necessary.
-                        var scaleFactor = Math.max(distance / 1000, 1); // Example scaling factor, adjust as needed
-                        var newScale = baseScale * scaleFactor;
-        
-                        entity.setAttribute('scale', `${newScale} ${newScale} ${newScale}`);
-                    });
-                }, function(err) {
-                    console.warn('ERROR(' + err.code + '): ' + err.message);
-                }, {
-                    enableHighAccuracy: true,
-                    timeout: 5000,
-                    maximumAge: 0
-                });
-            }
-        
-            setInterval(updateDistances, 1000); // Update distances every 1 second
-        });
-        </script>
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
                 var R = 6371;
                 var dLat = deg2rad(lat2 - lat1);
                 var dLon = deg2rad(lon2 - lon1);
@@ -283,7 +229,7 @@
                         if (distanceEntity) {
                             distanceEntity.setAttribute('value', `Mesafe: ${distance} metre`);
                         }
-                        var baseScale = 5;
+                        var baseScale = 25;
                         var scaleFactor = distance / 5;
                         var newScale = baseScale + scaleFactor;
                         newScale = Math.max(baseScale, newScale);
@@ -307,7 +253,7 @@
 
             setInterval(updateDistances, 1000);
         });
-    </script> -->
+    </script>
 </body>
 
 </html>
