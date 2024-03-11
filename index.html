@@ -9,14 +9,11 @@
 </head>
 
 <body style="margin : 0px; overflow: hidden;">
-    <!-- <button id="resetButton" style="position: fixed; z-index: 100; top: 20px; right: 20px;">Sıfırla</button> -->
-
     <a-scene vr-mode-ui="enabled: false" arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
 
         <!-- Uckuyular Üçkuyular 38.405675209865336, 27.06935935250486 -->
-        <a-image id="Uckuyular"
-            src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg"
-            look-at="[gps-camera]" scale="5 5 5" gps-entity-place="latitude: 38.405675209865336; 27.06935935250486;"
+        <a-image id="Uckuyular" src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg"
+            look-at="[gps-camera]" scale="5 5 5" gps-entity-place="latitude: 38.405675209865336; 27.06935935250486;" 
             position="0 2 0"></a-image>
         <a-text value="Uckuyular" look-at="[gps-camera]" color="white" scale="5 5 5"
             gps-entity-place="latitude: 38.405675209865336; 27.06935935250486;" position="0 -1 1"></a-text>
@@ -91,12 +88,6 @@
 
         <a-camera gps-camera rotation-reader></a-camera>
     </a-scene>
-    <button id="resetButton" style="position: fixed; z-index: 100; top: 20px; right: 20px;">Reset Scene</button>
-    <script>
-        document.getElementById('resetButton').addEventListener('click', function() {
-            window.location.reload(true);
-        });
-    </script>
     <script>
         window.addEventListener('load', function () {
             var cameraEl = document.querySelector('a-camera');
@@ -121,8 +112,8 @@
                 if (event.touches.length === 2) {
                     var distance = getDistance(event.touches);
                     var scale = initialScale * (distance / initialDistance);
-
-                    var newFOV = 80 / scale;
+ 
+                    var newFOV = 80 / scale;  
                     cameraEl.setAttribute('fov', newFOV);
                 }
             }
@@ -131,7 +122,7 @@
                 if (event.touches.length < 2) {
                     document.removeEventListener('touchmove', onPinchMove);
                     document.removeEventListener('touchend', onPinchEnd);
-
+ 
                     initialDistance = null;
                 }
             }
@@ -140,9 +131,9 @@
         });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function () { 
             function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-                var R = 6371;
+                var R = 6371; 
                 var dLat = deg2rad(lat2 - lat1);
                 var dLon = deg2rad(lon2 - lon1);
                 var a =
@@ -150,14 +141,14 @@
                     Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
                     Math.sin(dLon / 2) * Math.sin(dLon / 2);
                 var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-                var d = R * c;
-                return d * 1000;
+                var d = R * c; 
+                return d * 1000;  
             }
 
             function deg2rad(deg) {
                 return deg * (Math.PI / 180);
             }
-
+ 
             function updateDistances() {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var userLat = position.coords.latitude;
@@ -167,27 +158,19 @@
                         var placeLat = entity.getAttribute('gps-entity-place').latitude;
                         var placeLon = entity.getAttribute('gps-entity-place').longitude;
                         var distance = getDistanceFromLatLonInKm(userLat, userLon, placeLat, placeLon).toFixed(2);
-
+ 
                         var entityId = entity.getAttribute('id') + "-distance";
                         var distanceEntity = document.getElementById(entityId);
                         if (distanceEntity) {
                             distanceEntity.setAttribute('value', `Mesafe: ${distance} metre`);
                         }
-
-                        var baseScale = 5;
-                        var scaleFactor = distance / 5;
-                        var newScale = baseScale + scaleFactor;
-                        newScale = Math.max(baseScale, newScale);
-
-                        // Here, we adjust the vertical position based on the distance.
-                        // This is a simple linear adjustment; you might want to use a different formula.
-                        var baseHeight = 2; // This is your base height for all entities.
-                        var heightAdjustmentFactor = 0.1; // Change this factor to adjust the rate of height change.
-                        var newHeight = baseHeight + (distance * heightAdjustmentFactor);
-
+ 
+                        var baseScale = 5;  
+                        var scaleFactor = distance / 5;  
+                        var newScale = baseScale + scaleFactor;  
+                        newScale = Math.max(baseScale, newScale);  
+ 
                         entity.setAttribute('scale', `${newScale} ${newScale} ${newScale}`);
-                        // Update the position with the newHeight value.
-                        entity.setAttribute('position', `0 ${newHeight} 0`);
                     });
                 }, function (err) {
                     console.warn('ERROR(' + err.code + '): ' + err.message);
@@ -197,7 +180,7 @@
                     maximumAge: 0
                 });
             }
-
+ 
             setInterval(updateDistances, 1000);
         });
     </script>
