@@ -9,7 +9,7 @@
 </head>
 
 <body style="margin : 0px; overflow: hidden;">
-    <button id="resetButton" style="position: fixed; z-index: 100; top: 20px; right: 20px;">Sıfırla</button>
+    <!-- <button id="resetButton" style="position: fixed; z-index: 100; top: 20px; right: 20px;">Sıfırla</button> -->
 
     <a-scene vr-mode-ui="enabled: false" arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
 
@@ -91,6 +91,12 @@
 
         <a-camera gps-camera rotation-reader></a-camera>
     </a-scene>
+    <button id="resetButton" style="position: fixed; z-index: 100; top: 20px; right: 20px;">Reset Scene</button>
+    <script>
+        document.getElementById('resetButton').addEventListener('click', function() {
+            window.location.reload(true);
+        });
+    </script>
     <script>
         window.addEventListener('load', function () {
             var cameraEl = document.querySelector('a-camera');
