@@ -8,31 +8,45 @@
     <script src="https://ar-js-org.github.io/AR.js/aframe/build/aframe-ar.js"></script>
     <style>
         .clickable-alert {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          background-color: #f9edbe; /* Light yellow background */
-          color: #856404; /* Dark yellow text color */
-          padding: 10px;
-          text-align: center;
-          z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f9edbe;
+            /* Light yellow background */
+            color: #856404;
+            /* Dark yellow text color */
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
         }
-      
+
         a-image:hover {
-          cursor: pointer;
-          animation: pulse 1s infinite;
+            cursor: pointer;
+            animation: pulse 1s infinite;
         }
-      
+
         @keyframes pulse {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.05); }
-          100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
-      </style>
+    </style>
 </head>
 
 <body style="margin : 0px; overflow: hidden;">
+    <div id="clickableAlert" class="clickable-alert">
+        İZdeniz web sitesine gitmek için tıklayınız.
+        <button onclick="document.getElementById('clickableAlert').style.display='none';">Close</button>
+      </div>
     <a-scene id="scene" vr-mode-ui="enabled: false"
         arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
 
@@ -203,6 +217,14 @@
                     window.location.href = 'https://www.izdeniz.com.tr/';
                 });
             });
+
+            image.addEventListener('mouseenter', function () {
+                image.setAttribute('scale', '5.5 5.5 5.5'); // Slightly larger scale on hover
+            });
+            image.addEventListener('mouseleave', function () {
+                image.setAttribute('scale', '5 5 5'); // Original scale when not hovered
+            });
+
             var scene = document.querySelector('a-scene');
             if (scene) {
                 scene.addEventListener('click', function () {
@@ -250,7 +272,8 @@
                         var entityId = entity.getAttribute('id') + "-distance";
                         var distanceEntity = document.getElementById(entityId);
                         if (distanceEntity) {
-                            distanceEntity.setAttribute('value', `Mesafe: ${distance} metre`);
+                            distanceEntity.setAttribute('value', ` ${distance} metre`);
+                            // distanceEntity.setAttribute('value', `Mesafe: ${distance} metre`);
                         }
 
                         var baseScale = 5;
