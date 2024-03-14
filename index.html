@@ -43,10 +43,10 @@
 </head>
 
 <body style="margin : 0px; overflow: hidden;">
-    <div id="clickableAlert" class="clickable-alert">
-        İZdeniz web sitesine gitmek için tıklayınız.
+    <!-- <div id="clickableAlert" class="clickable-alert">
+        İZdeniz web sitesine gitmek için resimlere tıklayınız.
         <button onclick="document.getElementById('clickableAlert').style.display='none';">Close</button>
-      </div>
+      </div> -->
     <a-scene id="scene" vr-mode-ui="enabled: false"
         arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
 
@@ -218,12 +218,12 @@
                 });
             });
 
-            image.addEventListener('mouseenter', function () {
-                image.setAttribute('scale', '5.5 5.5 5.5'); // Slightly larger scale on hover
-            });
-            image.addEventListener('mouseleave', function () {
-                image.setAttribute('scale', '5 5 5'); // Original scale when not hovered
-            });
+            // image.addEventListener('mouseenter', function () {
+            //     image.setAttribute('scale', '5.5 5.5 5.5');  
+            // });
+            // image.addEventListener('mouseleave', function () {
+            //     image.setAttribute('scale', '5 5 5');  
+            // });
 
             var scene = document.querySelector('a-scene');
             if (scene) {
